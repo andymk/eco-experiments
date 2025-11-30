@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://damckyvi4e3ev"]
-
-[ext_resource type="Script" uid="uid://b34lb3dusdfem" path="res://scripts/terrain_4.gd" id="1_nctj0"]
-
-[node name="Terrain4" type="MeshInstance3D"]
-script = ExtResource("1_nctj0")
