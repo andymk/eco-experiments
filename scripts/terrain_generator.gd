@@ -98,17 +98,12 @@ func _generate_mesh() -> void:
 			tempNormals.append(Vector3.UP)
 			tempNormals.append(Vector3.UP)
 
-			# Vertex colours — all green (r,g,b,a)
-			if y == (numTilesPerLine /2) && x == (numTilesPerLine /2):
-				tempColours.append(Color( 0.105882324, 0.5422884, 0.81960785, 1))
-				tempColours.append(Color( 0.105882324, 0.5422884, 0.81960785, 1))
-				tempColours.append(Color( 0.105882324, 0.5422884, 0.81960785, 1))
-				tempColours.append(Color( 0.105882324, 0.5422884, 0.81960785, 1))
-			else:
-				tempColours.append(Color(0.07008723, 0.3301887, 0.118246295, 1))
-				tempColours.append(Color(0.07008723, 0.3301887, 0.118246295, 1))
-				tempColours.append(Color(0.07008723, 0.3301887, 0.118246295, 1))
-				tempColours.append(Color(0.07008723, 0.3301887, 0.118246295, 1))
+			var biome:Biome = biomes[uv.x]
+			var color = biome.startCol.lerp(biome.endCol, uv.y)
+			tempColours.append(color)
+			tempColours.append(color)
+			tempColours.append(color)
+			tempColours.append(color)
 
 	# Build the mesh arrays
 	var arrays := []
@@ -116,8 +111,8 @@ func _generate_mesh() -> void:
 	arrays[Mesh.ARRAY_VERTEX] = tempVerts
 	arrays[Mesh.ARRAY_INDEX] = tempIndices
 	arrays[Mesh.ARRAY_NORMAL] = tempNormals
-	#arrays[Mesh.ARRAY_COLOR] = tempColours
-	arrays[Mesh.ARRAY_TEX_UV] = tempUvs
+	arrays[Mesh.ARRAY_COLOR] = tempColours
+	#arrays[Mesh.ARRAY_TEX_UV] = tempUvs
 
 	# Create and assign the mesh
 	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)

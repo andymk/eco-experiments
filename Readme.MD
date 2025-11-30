@@ -3,3 +3,6 @@ This project is written in Godot and based off a video by Sebastian Lague, [Yout
 
 First attempt
 ![First](images/image1.png)
+
+Colouring
+![Colours](images/image2.png)
