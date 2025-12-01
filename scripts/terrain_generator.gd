@@ -17,6 +17,13 @@ var centralize:bool = true;
 var waterDepth:float = 0.2;
 var edgeDepth:float = 0.2;
 
+@export var seed:int = randi():
+	set(value):
+		seed = value
+		_generate_mesh()
+		notify_property_list_changed()
+
+
 @export var grass:Biome = Biome.new():
 	set(value):
 		grass = value
@@ -53,10 +60,7 @@ func _generate_mesh() -> void:
 	var numTilesPerLine:int = int(ceil(worldSize));
 	var minStart:float = -numTilesPerLine / 2.0 if centralize else 0.0
 	var heightmapGen = HeightMapGenerator.new()
-	var map = heightmapGen._generateHeightmap(numTilesPerLine)
-	print("map", map)
-	print("numTilesPerLine: ", numTilesPerLine)
-	print("minStart: ", minStart)
+	var map = heightmapGen.generate_heightmap(numTilesPerLine, seed)
 	
 	var tempVerts:PackedVector3Array
 	var tempIndices: PackedInt32Array
@@ -135,5 +139,4 @@ func _getBiomeInfo(height:float, biomes:Array):
 	sampleT = int(sampleT * biome.numSteps) / float(max(biome.numSteps, 1))
 
 	var uv = Vector2(biomeIndex, sampleT)
-	print ("uv:", uv)
 	return uv
