@@ -36,7 +36,7 @@ func generate_heightmap(size: int, seed: int) -> Array:
 		for z in range(size):
 
 			var amplitude = 1.0
-			var frequency = 1.0
+			var frequency = 6.7
 			var total = 0.0
 			var max_value = 0.0
 

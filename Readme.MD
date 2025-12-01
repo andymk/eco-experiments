@@ -6,3 +6,6 @@ First attempt
 
 Colouring
 ![Colours](images/image2.png)
+
+Terrain Depth
+!(images/image3.png)
